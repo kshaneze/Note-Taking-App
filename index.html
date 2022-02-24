@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Note Taker App</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="container__app">
+      <h1>Note Taker</h1>
+      <h3>Add a new note:</h3>
+
+      <div class="input__field">
+        <form class="form">
+          <label class="input__text-name">Note: </label>
+          <textarea
+            rows="5"
+            cols=""
+            class="input__text"
+            placeholder="Write your note here"
+          ></textarea>
+          <label for="submit"></label><br />
+          <button class="btn btn-green" type="submit">Add Note</button>
+        </form>
+      </div>
+
+      <div class="modal hidden">
+        <button class="close-modal">X</button>
+      </div>
+      <div class="overlay hidden"></div>
+
+      <div class="notes-container">
+        <!-- <div class="note">
+          <h4 class="note__heading">Note1</h4>
+          <p class="note__text">
+            MY note text
+          </p>
+          <div class="note__btn">
+            <button class="btn btn-view">View Detail</button>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </body>
+</html>
