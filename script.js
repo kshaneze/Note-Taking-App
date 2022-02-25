@@ -2,11 +2,11 @@
 // Select all elements needed for this task (querySelector)
 const form = document.querySelector('.form');
 const input = document.querySelector('.input__text');
-const container = document.querySelector('.notes-container');
+let container = document.querySelector('.notes-container');
 const button = document.querySelector('.btn');
 const noteDiv = document.querySelector('.note');
 
-const modal = document.querySelector('.modal');
+let modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnClose = document.querySelectorAll('.close-modal');
 const btnView = document.querySelector('.btn-view');
@@ -35,14 +35,20 @@ form.addEventListener('submit', function (e) {
   `);
     container.appendChild(divNotes);
 
+    //
+
     container.addEventListener('click', function (e) {
       if (!e.target.classList.contains('btn-view')) {
         return;
       }
+
       modal.classList.remove('hidden');
       overlay.classList.remove('hidden');
 
-      modal.innerHTML += createdNote;
+      modal.innerHTML = `<h4 class="note__heading">Note ${noteCount}</h4>
+      <p class="note__text">${input.value}</p>
+      <button class="close-modal">X</button>
+      `;
     });
 
     modal.addEventListener('click', function (e) {
