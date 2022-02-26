@@ -11,7 +11,6 @@ const overlay = document.querySelector('.overlay');
 const btnClose = document.querySelectorAll('.close-modal');
 const btnView = document.querySelector('.btn-view');
 let noteCount = 0;
-
 // Create function that reads when the button is clicked on form
 
 form.addEventListener('submit', function (e) {
@@ -30,23 +29,26 @@ form.addEventListener('submit', function (e) {
     // Inserting HTML content into created div
     const createdNote = (divNotes.innerHTML += `
   <h4 class="note__heading">Note ${noteCount}</h4>
-              <p class="note__text">${input.value}</p>
-              <button class="btn btn-view">View Detail</button>
+              <p id="note${noteCount}" class="note__text">${input.value}</p>
+              <button class="btn btn-view" value="${noteCount}">View Detail</button>
   `);
     container.appendChild(divNotes);
-
-    //
 
     container.addEventListener('click', function (e) {
       if (!e.target.classList.contains('btn-view')) {
         return;
       }
 
+      let showNote;
+      showNote = e.target.value;
+      console.log(showNote);
+      let noteText = document.getElementById(`note${showNote}`).innerHTML;
+
       modal.classList.remove('hidden');
       overlay.classList.remove('hidden');
 
-      modal.innerHTML = `<h4 class="note__heading">Note ${noteCount}</h4>
-      <p class="note__text">${input.value}</p>
+      modal.innerHTML = `<h4 class="note__heading">Note ${showNote}</h4>
+      <p class="note__text">${noteText}</p>
       <button class="close-modal">X</button>
       `;
     });
