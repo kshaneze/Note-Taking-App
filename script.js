@@ -11,8 +11,14 @@ const overlay = document.querySelector('.overlay');
 const btnClose = document.querySelectorAll('.close-modal');
 const btnView = document.querySelector('.btn-view');
 let noteCount = 0;
-// Create function that reads when the button is clicked on form
 
+// Focus input field
+window.onload = function () {
+  input.focus();
+};
+onload();
+
+// Create function that reads when the button is clicked on form
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
@@ -34,19 +40,32 @@ form.addEventListener('submit', function (e) {
   `);
     container.appendChild(divNotes);
 
+    // When we create one note, input field is back to being empty
+    input.value = '';
+    // imput field is focused;
+    input.focus();
+
+    // Adding event listener on note container
     container.addEventListener('click', function (e) {
+      // in this container if we click somwhere and it doesnt contain btn-view claslist - WE WILL JUST RETURN
       if (!e.target.classList.contains('btn-view')) {
         return;
       }
 
+      // Else
       let showNote;
+      // Create shownote variable, where i will store value of clicked button (number), which i previously given value
       showNote = e.target.value;
-      console.log(showNote);
+
+      // Creating noteText varibale, that i will later display in modal window, by getting ElementById of note(showNote(e.target.value(which is value of button = notecount))
       let noteText = document.getElementById(`note${showNote}`).innerHTML;
 
+      // Displaying modal window by removing hidden class
       modal.classList.remove('hidden');
+      // Displaying overlay by removing hidden class
       overlay.classList.remove('hidden');
 
+      // Inserting showNote for note count and noteText to display corrent(corresponding) notetext
       modal.innerHTML = `<h4 class="note__heading">Note ${showNote}</h4>
       <p class="note__text">${noteText}</p>
       <button class="close-modal">X</button>
@@ -62,45 +81,3 @@ form.addEventListener('submit', function (e) {
     });
   }
 });
-
-// // Create function that reads when the button is clicked on form
-// form.addEventListener('submit', function (e) {
-//   e.preventDefault();
-//   // Clicking motion
-
-//   const click = e.target;
-//   // Every time i click on button, notCount is incremented by one. Then that count i store and use to count number of note
-//   if (button.click) noteCount++;
-
-//   // if input filed is empty note will not be added!
-//   if (!input.value == '') {
-//     // Create new div with same class as mine(note) with
-
-//     const createDiv = document.createElement('div');
-//     createDiv.classList.add('note');
-//     createDiv.innerHTML = `
-//      <h4 class="note__heading">Note ${noteCount}</h4>
-//              <p class="note__text">${input.value}</p>
-
-//              <div class="note__btn">
-//                <button class="btn btn-view">View Detail</button>
-//                </div>
-//      `;
-
-//     container.appendChild(createDiv);
-//   } else return;
-
-//   input.value = '';
-//   input.focus();
-
-//   const createModalPopup = function (e) {
-//     if (!e.target.classList.contains('btn-view')) {
-//       return;
-//     }
-//     modal.classList.remove('hidden');
-//     overlay.classList.remove('hidden');
-//   };
-
-//   // creating modal window on button click
-//   container.addEventListener('click', createModalPopup);
-// });
